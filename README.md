@@ -10,3 +10,4 @@ Site web de gestion d'opinion publique
 Points améliorations :
 - Possibilité d'ajouter tag pour les lecteurs avec tags fantômes
 - Mettre en lien avec un autre poste si ce dernier est source du premier
+- Validation à l'inscription
