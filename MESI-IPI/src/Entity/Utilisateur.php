@@ -10,20 +10,26 @@ namespace App\Entity;
 
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\ProductRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\UtilisateurRepository")
+ * @Table(name="utilisateur")
  */
 class Utilisateur
 {
+    /** @Id @Column(type="integer") @GeneratedValue **/
     private $id;
+    /** @Column(type="string") **/
     private $nom;
+    /** @Column(type="string") **/
     private $prenom;
+    /** @Column(type="string") **/
     private $passwrd;
+    /** @Column(type="integer") **/
     private $pieceIdentite;
+    /** @Column(type="integer") **/
     private $avatar;
 
-    public function __construct($id, $nom, $prenom, $passwrd, $pieceIdentite, $avatar)
+    public function __construct($nom, $prenom, $passwrd, $pieceIdentite, $avatar)
     {
-        $this->id = $id;
         $this->nom = $nom;
         $this->prenom = $prenom;
         $this->passwrd = $passwrd;
