@@ -9,7 +9,48 @@
 namespace App\Controller;
 
 
-class testController
-{
+use App\Entity\Utilisateur;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+//use Doctrine\DBAL\Driver\Connection;
+use Doctrine\DBAL\Connection;
+use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpClient\Response;
 
+/**
+ * Class AdvertController
+ * @package App\Controller
+ */
+class testController extends AbstractController
+{
+    /**
+     * @Route("/test")
+     */
+    public function index(Connection $connection){
+
+        $utilisateurs = $connection->fetchAll('SELECT * FROM utilisateur');
+
+        foreach($utilisateurs as $utilisateur) {
+            $utilisateur = new Utilisateur(
+                $utilisateur['idUtilisateur'],
+                $utilisateur['nom'],
+                $utilisateur['prenom'],
+                $utilisateur['password'],
+                $utilisateur['idPieceIdentite'],
+                $utilisateur['idAvatar']
+            );
+            /*$req = $connection->prepare('INSERT INTO utilisateur(nom,prenom,password,idPieceIdentite,idAvatar) values (:nom,:prenom,:password,:pieceIdentite,:avatar)');
+            $req->bindValue(':nom',$utilisateur->getNom());
+            $req->bindValue(':prenom',$utilisateur->getPrenom());
+            $req->bindValue(':password',$utilisateur->getPasswrd());
+            $req->bindValue(':pieceIdentite',$utilisateur->getPieceIdentite());
+            $req->bindValue(':avatar',$utilisateur->getAvatar());
+            $req->execute();*/
+        }
+        $req = $connection->createQueryBuilder();
+        $req
+            ->insert('utilisateur')
+            ->setValue('nom' ,'?');
+
+        return $this->render('base.html.twig');
+    }
 }
