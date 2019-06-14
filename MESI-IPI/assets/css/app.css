@@ -1,5 +1,8 @@
-.mt-5pc {
-    margin-top: 5%;
+.frame {
+    margin-top: 15px;
+    padding: 10%;
+    border: 10px solid #ffc107 !important;
+    border-radius: 50px;
 }
 
 footer {
