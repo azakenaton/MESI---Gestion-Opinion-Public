@@ -31,7 +31,7 @@ class Utilisateur
 
     /**
      * @ORM\Column(type="string", name="prenom")
-     * **/
+     **/
     private $prenom;
 
     /**
@@ -40,7 +40,7 @@ class Utilisateur
     private $password;
 
     /**
-     * @ORM\Column(type="integer", name="idPieceIdentite")
+     * @ORM\Column(type="string", name="idPieceIdentite")
      * @ORM\OneToOne(targetEntity="Image")
      * @ORM\JoinColumn(name="image", referencedColumnName="idImage")
      **/
@@ -53,13 +53,13 @@ class Utilisateur
      **/
     private $idAvatar;
 
-    public function __construct($nom, $prenom, $passwrd, $pieceIdentite, $avatar)
+    public function __construct($nom, $prenom, $password, $idPieceIdentite, $idAvatar)
     {
         $this->nom = $nom;
         $this->prenom = $prenom;
-        $this->passwrd = $passwrd;
-        $this->pieceIdentite = $pieceIdentite;
-        $this->avatar = $avatar;
+        $this->password = $password;
+        $this->idPieceIdentite = $idPieceIdentite;
+        $this->idAvatar = $idAvatar;
     }
 
     /**

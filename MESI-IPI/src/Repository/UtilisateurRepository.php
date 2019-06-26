@@ -53,5 +53,8 @@ class UtilisateurRepository extends EntityRepository
         echo get_class($userRepo), "\n";
 
 
+        $this->entityManager->persist($utilisateur);
+        $this->entityManager->flush();
+
     }
 }

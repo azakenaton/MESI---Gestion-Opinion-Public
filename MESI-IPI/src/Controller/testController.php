@@ -67,9 +67,9 @@ class testController extends AbstractController
         $req->execute();*/
         //$em = null;
         //$em instanceof EntityManager;
-        $util = new Utilisateur('moncul2','jean','zaerzae',1,1);
-        $req = new ImageRepository($connection);
-        $req->addImage($util);
+        $util = new Utilisateur('HYVERNAT','LUC','luccho',3,3);
+        $req = new UtilisateurRepository($connection);
+        $req->addUtilisateur($util);
 
         return $this->render('base.html.twig');
     }

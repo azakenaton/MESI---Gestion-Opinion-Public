@@ -20,12 +20,13 @@ class Image
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
+     * @ORM\OneToOne(targetEntity="Image")
      * @ORM\Column(type="integer", name="idImage")
      **/
     private $idImage;
 
     /**
-     * @ORM\Column(type="string", name="refImg")
+     * @ORM\Column(type="string", name="refImg", options={"default":NULL})
      **/
     private $refImg;
 
