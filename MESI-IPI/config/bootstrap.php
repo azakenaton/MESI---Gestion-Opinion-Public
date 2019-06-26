@@ -4,6 +4,39 @@ use Symfony\Component\Dotenv\Dotenv;
 
 require dirname(__DIR__).'/vendor/autoload.php';
 
+use Doctrine\ORM\Tools\Setup;
+use Doctrine\ORM\EntityManager;
+
+$entitiesPath = [
+    join(DIRECTORY_SEPARATOR, [__DIR__,"..", "src", "Entity"])
+];
+
+// Connexion à la base de données
+$dbParams = [
+    'driver'   => 'pdo_mysql',
+    'host'     => 'localhost',
+    'charset'  => 'utf8',
+    'user'     => 'root',
+    'password' => '',
+    'dbname'   => 'hi-op_bdd',
+];
+
+$isDevMode = true;
+$proxyDir = null;
+$cache = null;
+$useSimpleAnnotationReader = false;
+
+$config = Setup::createAnnotationMetadataConfiguration(
+    $entitiesPath,
+    $isDevMode,
+    $proxyDir,
+    $cache,
+    $useSimpleAnnotationReader
+);
+
+$entityManager = EntityManager::create($dbParams, $config);
+
+
 // Load cached env vars if the .env.local.php file exists
 // Run "composer dump-env prod" to create it (requires symfony/flex >=1.2)
 if (is_array($env = @include dirname(__DIR__).'/.env.local.php')) {
@@ -19,3 +52,4 @@ $_SERVER += $_ENV;
 $_SERVER['APP_ENV'] = $_ENV['APP_ENV'] = ($_SERVER['APP_ENV'] ?? $_ENV['APP_ENV'] ?? null) ?: 'dev';
 $_SERVER['APP_DEBUG'] = $_SERVER['APP_DEBUG'] ?? $_ENV['APP_DEBUG'] ?? 'prod' !== $_SERVER['APP_ENV'];
 $_SERVER['APP_DEBUG'] = $_ENV['APP_DEBUG'] = (int) $_SERVER['APP_DEBUG'] || filter_var($_SERVER['APP_DEBUG'], FILTER_VALIDATE_BOOLEAN) ? '1' : '0';
+return $entityManager;

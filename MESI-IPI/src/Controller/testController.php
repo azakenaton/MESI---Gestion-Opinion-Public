@@ -11,6 +11,7 @@ namespace App\Controller;
 
 use App\Entity\Utilisateur;
 use App\Repository\UtilisateurRepository;
+use App\Repository\ImageRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 //use Doctrine\DBAL\Driver\Connection;
 use Doctrine\DBAL\Connection;
@@ -64,11 +65,11 @@ class testController extends AbstractController
             ->setParameter(4,2);
 
         $req->execute();*/
-        /*$em = null;
-        $em instanceof EntityManager;
-        $util = new Utilisateur('moncul','jean','zaerzae',2,2);
-        $req = new UtilisateurRepository($em,$util);
-        $req->addUtilisateur();*/
+        //$em = null;
+        //$em instanceof EntityManager;
+        $util = new Utilisateur('moncul2','jean','zaerzae',1,1);
+        $req = new ImageRepository($connection);
+        $req->addImage($util);
 
         return $this->render('base.html.twig');
     }

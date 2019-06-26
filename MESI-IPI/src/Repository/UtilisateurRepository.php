@@ -9,15 +9,30 @@
 namespace App\Repository;
 
 
+use App\Entity\Utilisateur;
 use Doctrine\DBAL\Connection;
 use Doctrine\ORM\EntityRepository;
 
 
+
+
 class UtilisateurRepository extends EntityRepository
 {
-    public function addUtilisateur(){
+    Private $connection;
+    Private $entityManager;
 
-        $req = $this->createQueryBuilder();
+    /**
+     * UtilisateurRepository constructor.
+     */
+    public function __construct(Connection $connection)
+    {
+        $this->connection = $connection;
+        $this->entityManager = require_once('../../config/bootstrap.php');
+    }
+
+    public function addUtilisateur(Utilisateur $utilisateur){
+
+        /*$req = $this->connection->createQueryBuilder();
         $req
             ->insert('utilisateur')
             ->setValue('nom' ,'?')
@@ -25,12 +40,17 @@ class UtilisateurRepository extends EntityRepository
             ->setValue('password' ,'?')
             ->setValue('idPieceIdentite' ,'?')
             ->setValue('idAvatar' ,'?')
-            ->setParameter(0,'pierre')
-            ->setParameter(1,'jean')
-            ->setParameter(2,'jean-pierre')
-            ->setParameter(3,2)
-            ->setParameter(4,2);
+            ->setParameter(0,$utilisateur->getNom())
+            ->setParameter(1,$utilisateur->getPrenom())
+            ->setParameter(2,$utilisateur->getPasswrd())
+            ->setParameter(3,$utilisateur->getPieceIdentite())
+            ->setParameter(4,$utilisateur->getAvatar());
 
-        $req->execute();
+        $req->execute();*/
+
+        $userRepo =$this->entityManager->getRepository(Utilisateur::class);
+        echo get_class($userRepo), "\n";
+
+
     }
 }

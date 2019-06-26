@@ -8,24 +8,28 @@
 
 namespace App\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\UtilisateurRepository")
- * @Table(name="utilisateur")
+ * @ORM\Entity
  */
 class Utilisateur
 {
-    /** @Id @Column(type="integer") @GeneratedValue **/
+    /**
+     * @ORM\Id
+     * @ORM\GeneratedValue
+     * @ORM\Column(type="integer") @GeneratedValue
+     **/
     private $id;
-    /** @Column(type="string") **/
+    /** @ORM\Column(type="string") **/
     private $nom;
-    /** @Column(type="string") **/
+    /** @ORM\Column(type="string") **/
     private $prenom;
-    /** @Column(type="string") **/
+    /** @ORM\Column(type="string") **/
     private $passwrd;
-    /** @Column(type="integer") **/
+    /** @ORM\Column(type="integer") **/
     private $pieceIdentite;
-    /** @Column(type="integer") **/
+    /** @ORM\Column(type="integer") **/
     private $avatar;
 
     public function __construct($nom, $prenom, $passwrd, $pieceIdentite, $avatar)
