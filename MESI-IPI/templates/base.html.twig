@@ -13,9 +13,26 @@
     </head>
     <body>
         <nav class="navbar-light bg-warning">
-            <a class="navbar-brand container" href="#">
-                <h1>Hi-Op!</h1>
-            </a>
+            <div class="container">
+                <div class="row">
+                    <div class="col-8">
+                        <a class="navbar-brand container" href="/accueil">
+                            <h1>Hi-Op!</h1>
+                        </a>
+                    </div>
+                    <div class="col-2">
+                        <a class="navbar-brand container" href="/accueil">
+                            <i class="fas fa-edit nav-icon" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                    <div class="col-2">
+                        <a class="navbar-brand container" href="/connexion">
+                            <i class="fas fa-user nav-icon"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
         </nav>
         {% block body %} {% endblock %}
         <footer>
