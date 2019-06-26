@@ -6,10 +6,26 @@
         {% block stylesheets %}{% endblock %}
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <script src="https://kit.fontawesome.com/fcda6e7ddf.js"></script>
+
         {{ encore_entry_link_tags('app') }}
     </head>
     <body>
-        {% block body %}{% endblock %}
+        <nav class="navbar navbar-light bg-light">
+            <a class="navbar-brand" href="#">
+                Hi-Op!
+            </a>
+        </nav>
+        {% block body %} {% endblock %}
+        <footer>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <small>&copy; 2019 All rights reserved. Hi-Op.</small>
+                    </div>
+                </div>
+            </div>
+        </footer>
         {% block javascripts %}{% endblock %}
         {{ encore_entry_script_tags('app') }}
         <!-- Optional JavaScript -->
