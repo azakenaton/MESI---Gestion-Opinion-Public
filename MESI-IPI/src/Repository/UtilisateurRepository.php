@@ -9,6 +9,7 @@
 namespace App\Repository;
 
 
+use App\Entity\EntityManager;
 use App\Entity\Utilisateur;
 use Doctrine\DBAL\Connection;
 use Doctrine\ORM\EntityRepository;
@@ -27,7 +28,7 @@ class UtilisateurRepository extends EntityRepository
     public function __construct(Connection $connection)
     {
         $this->connection = $connection;
-        $this->entityManager = require_once('../../config/bootstrap.php');
+        $this->entityManager = EntityManager::getInstance();
     }
 
     public function addUtilisateur(Utilisateur $utilisateur){
