@@ -41,14 +41,14 @@ class Utilisateur
 
     /**
      * @ORM\Column(type="string", name="idPieceIdentite")
-     * @ORM\OneToOne(targetEntity="Image")
+     * @ORM\OneToOne(targetEntity="Image::class")
      * @ORM\JoinColumn(name="image", referencedColumnName="idImage")
      **/
     private $idPieceIdentite;
 
     /**
      * @ORM\Column(type="integer", name="idAvatar")
-     * @ORM\OneToOne(targetEntity="Image")
+     * @ORM\OneToOne(targetEntity="Image::class")
      * @ORM\JoinColumn(name="image", referencedColumnName="idImage")
      **/
     private $idAvatar;
@@ -157,5 +157,13 @@ class Utilisateur
     {
         $this->idAvatar = $idAvatar;
     }
+
+    public function __toString()
+    {
+        // TODO: Implement __toString() method.
+        $format = "User (id: %s, firstname: %s, lastname: %s, role: %s)\n";
+        return sprintf($format, $this->id, $this->firstname, $this->lastname, $this->role);
+    }
+
 
 }

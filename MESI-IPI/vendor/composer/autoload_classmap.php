@@ -558,6 +558,7 @@ return array(
     'SebastianBergmann\\Timer\\Timer' => $vendorDir . '/phpunit/php-timer/src/Timer.php',
     'SebastianBergmann\\Type\\CallableType' => $vendorDir . '/sebastian/type/src/CallableType.php',
     'SebastianBergmann\\Type\\Exception' => $vendorDir . '/sebastian/type/src/exception/Exception.php',
+    'SebastianBergmann\\Type\\GenericObjectType' => $vendorDir . '/sebastian/type/src/GenericObjectType.php',
     'SebastianBergmann\\Type\\IterableType' => $vendorDir . '/sebastian/type/src/IterableType.php',
     'SebastianBergmann\\Type\\NullType' => $vendorDir . '/sebastian/type/src/NullType.php',
     'SebastianBergmann\\Type\\ObjectType' => $vendorDir . '/sebastian/type/src/ObjectType.php',

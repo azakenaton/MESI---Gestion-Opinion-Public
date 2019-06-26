@@ -9,6 +9,7 @@
 namespace App\Controller;
 
 
+use App\Entity\Image;
 use App\Entity\Utilisateur;
 use App\Repository\UtilisateurRepository;
 use App\Repository\ImageRepository;
@@ -30,46 +31,11 @@ class testController extends AbstractController
      */
     public function index(Connection $connection){
 
-        /*$utilisateurs = $connection->fetchAll('SELECT * FROM utilisateur');
+        $image= new Image('LUC','luccho');
+        $req = new ImageRepository($connection);
+        $res = $req->getImageWithId(1);
 
-        foreach($utilisateurs as $utilisateur) {
-            $utilisateur = new Utilisateur(
-                $utilisateur['idUtilisateur'],
-                $utilisateur['nom'],
-                $utilisateur['prenom'],
-                $utilisateur['password'],
-                $utilisateur['idPieceIdentite'],
-                $utilisateur['idAvatar']
-            );
-            $req = $connection->prepare('INSERT INTO utilisateur(nom,prenom,password,idPieceIdentite,idAvatar) values (:nom,:prenom,:password,:pieceIdentite,:avatar)');
-            $req->bindValue(':nom',$utilisateur->getNom());
-            $req->bindValue(':prenom',$utilisateur->getPrenom());
-            $req->bindValue(':password',$utilisateur->getPasswrd());
-            $req->bindValue(':pieceIdentite',$utilisateur->getPieceIdentite());
-            $req->bindValue(':avatar',$utilisateur->getAvatar());
-            $req->execute();
-        }
-
-        $req = $connection->createQueryBuilder();
-        $req
-            ->insert('utilisateur')
-            ->setValue('nom' ,'?')
-            ->setValue('prenom' ,'?')
-            ->setValue('password' ,'?')
-            ->setValue('idPieceIdentite' ,'?')
-            ->setValue('idAvatar' ,'?')
-            ->setParameter(0,'pierre')
-            ->setParameter(1,'jean')
-            ->setParameter(2,'jean-pierre')
-            ->setParameter(3,2)
-            ->setParameter(4,2);
-
-        $req->execute();*/
-        //$em = null;
-        //$em instanceof EntityManager;
-        $util = new Utilisateur('HYVERNAT','LUC','luccho',3,3);
-        $req = new UtilisateurRepository($connection);
-        $req->addUtilisateur($util);
+        var_dump($res->getRefImg());
 
         return $this->render('base.html.twig');
     }

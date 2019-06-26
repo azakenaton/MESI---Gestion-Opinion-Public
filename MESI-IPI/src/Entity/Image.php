@@ -20,7 +20,7 @@ class Image
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
-     * @ORM\OneToOne(targetEntity="Image")
+     * @ORM\OneToOne(targetEntity="Image::class")
      * @ORM\Column(type="integer", name="idImage")
      **/
     private $idImage;
@@ -41,9 +41,8 @@ class Image
      * @param $refImg
      * @param $nomImg
      */
-    public function __construct($idImage, $refImg, $nomImg)
+    public function __construct($refImg, $nomImg)
     {
-        $this->idImage = $idImage;
         $this->refImg = $refImg;
         $this->nomImg = $nomImg;
     }

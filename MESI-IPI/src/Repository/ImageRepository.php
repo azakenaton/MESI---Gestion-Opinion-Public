@@ -8,12 +8,16 @@
 
 namespace App\Repository;
 
-use App\Entity\Utilisateur;
+use App\Entity\Image;
 use Doctrine\DBAL\Connection;
+use Doctrine\ORM\EntityRepository;
+use App\Entity\EntityManager;
 
-class ImageRepository
+class ImageRepository extends EntityRepository
 {
     Private $connection;
+    Private $entityManager;
+    Private $userRepo;
 
     /**
      * ImageRepository constructor.
@@ -22,24 +26,31 @@ class ImageRepository
     public function __construct(Connection $connection)
     {
         $this->connection = $connection;
+        $this->entityManager = EntityManager::getInstance();
+        $this->userRepo = $this->entityManager->getRepository(Image::class);
     }
 
     /**
      * @param Utilisateur $utilisateur
      */
-    public function addImage(Utilisateur $utilisateur)
+    public function addImage(Image $img)
     {
-        $req = $this->connection->createQueryBuilder();
-        $req
-            ->insert('image')
-            ->setValue('nomImg' ,'?')
-            ->setParameter(0,$utilisateur->getNom().$utilisateur->getId());
-
-        $res = $req->execute();
-        var_dump($res);
-
-
+        $this->entityManager->persist($img);
+        $this->entityManager->flush();
     }
+
+    public function getImageWithId($id){
+        $img = $this->userRepo->find($id);
+
+        return $img;
+    }
+
+    public function getImgByRefId($ref){
+        $imgByRef = $this->userRepo->findOneBy(["refImg" => $ref]);
+        return $imgByRef;
+    }
+
+
 
 
 }

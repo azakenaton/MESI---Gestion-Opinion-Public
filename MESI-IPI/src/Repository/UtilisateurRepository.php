@@ -21,6 +21,7 @@ class UtilisateurRepository extends EntityRepository
 {
     Private $connection;
     Private $entityManager;
+    Private $userRepo;
 
     /**
      * UtilisateurRepository constructor.
@@ -29,32 +30,45 @@ class UtilisateurRepository extends EntityRepository
     {
         $this->connection = $connection;
         $this->entityManager = EntityManager::getInstance();
+        $this->userRepo = $this->entityManager->getRepository(Utilisateur::class);
     }
 
     public function addUtilisateur(Utilisateur $utilisateur){
-
-        /*$req = $this->connection->createQueryBuilder();
-        $req
-            ->insert('utilisateur')
-            ->setValue('nom' ,'?')
-            ->setValue('prenom' ,'?')
-            ->setValue('password' ,'?')
-            ->setValue('idPieceIdentite' ,'?')
-            ->setValue('idAvatar' ,'?')
-            ->setParameter(0,$utilisateur->getNom())
-            ->setParameter(1,$utilisateur->getPrenom())
-            ->setParameter(2,$utilisateur->getPasswrd())
-            ->setParameter(3,$utilisateur->getPieceIdentite())
-            ->setParameter(4,$utilisateur->getAvatar());
-
-        $req->execute();*/
-
-        $userRepo =$this->entityManager->getRepository(Utilisateur::class);
-        echo get_class($userRepo), "\n";
-
 
         $this->entityManager->persist($utilisateur);
         $this->entityManager->flush();
 
     }
+
+    public function getUtilisateurWithId($id){
+        $user = $this->userRepo->find($id);
+
+        return $user;
+    }
+
+    public function getAllUser(){
+        $allUser = $this->userRepo->findAll();
+        return $allUser;
+    }
+
+    public function getUserByName($nom){
+        $userByName = $this->userRepo->findOneBy(["nom" => $nom]);
+        return $userByName;
+    }
+
+    public function delUser($id){
+        $user = $this->getUtilisateurWithId($id);
+
+        $this->entityManager->remove($user);
+        $this->entityManager->flush($user);
+    }
+
+    public function modifyUser($id){
+        $user = $this->getUtilisateurWithId($id);
+
+        $user->setPrenom("jean");
+        $this->entityManager->flush();
+    }
+
+
 }

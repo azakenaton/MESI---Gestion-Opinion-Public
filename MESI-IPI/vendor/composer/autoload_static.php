@@ -64,7 +64,6 @@ class ComposerStaticInit118af2b3c4aada007a7d7ea6dfc7e84d
             'Symfony\\Component\\PropertyInfo\\' => 31,
             'Symfony\\Component\\PropertyAccess\\' => 33,
             'Symfony\\Component\\Process\\' => 26,
-            'Symfony\\Component\\Panther\\' => 26,
             'Symfony\\Component\\OptionsResolver\\' => 34,
             'Symfony\\Component\\Mime\\' => 23,
             'Symfony\\Component\\Intl\\' => 23,
@@ -119,7 +118,6 @@ class ComposerStaticInit118af2b3c4aada007a7d7ea6dfc7e84d
         'F' => 
         array (
             'Fig\\Link\\' => 9,
-            'Facebook\\WebDriver\\' => 19,
         ),
         'E' => 
         array (
@@ -276,10 +274,6 @@ class ComposerStaticInit118af2b3c4aada007a7d7ea6dfc7e84d
         'Symfony\\Component\\Process\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/process',
-        ),
-        'Symfony\\Component\\Panther\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/symfony/panther/src',
         ),
         'Symfony\\Component\\OptionsResolver\\' => 
         array (
@@ -460,10 +454,6 @@ class ComposerStaticInit118af2b3c4aada007a7d7ea6dfc7e84d
         'Fig\\Link\\' => 
         array (
             0 => __DIR__ . '/..' . '/fig/link-util/src',
-        ),
-        'Facebook\\WebDriver\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/facebook/webdriver/lib',
         ),
         'Egulias\\EmailValidator\\' => 
         array (
@@ -1112,6 +1102,7 @@ class ComposerStaticInit118af2b3c4aada007a7d7ea6dfc7e84d
         'SebastianBergmann\\Timer\\Timer' => __DIR__ . '/..' . '/phpunit/php-timer/src/Timer.php',
         'SebastianBergmann\\Type\\CallableType' => __DIR__ . '/..' . '/sebastian/type/src/CallableType.php',
         'SebastianBergmann\\Type\\Exception' => __DIR__ . '/..' . '/sebastian/type/src/exception/Exception.php',
+        'SebastianBergmann\\Type\\GenericObjectType' => __DIR__ . '/..' . '/sebastian/type/src/GenericObjectType.php',
         'SebastianBergmann\\Type\\IterableType' => __DIR__ . '/..' . '/sebastian/type/src/IterableType.php',
         'SebastianBergmann\\Type\\NullType' => __DIR__ . '/..' . '/sebastian/type/src/NullType.php',
         'SebastianBergmann\\Type\\ObjectType' => __DIR__ . '/..' . '/sebastian/type/src/ObjectType.php',
