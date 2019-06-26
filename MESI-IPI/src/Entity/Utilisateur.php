@@ -10,27 +10,48 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
+
 /**
  * @ORM\Entity
+ * @ORM\Table(name="utilisateur")
  */
 class Utilisateur
 {
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
-     * @ORM\Column(type="integer") @GeneratedValue
+     * @ORM\Column(type="integer", name="idUtilisateur")
+    **/
+    private $idUtilisateur;
+
+    /**
+     * @ORM\Column(type="string", name="nom")
      **/
-    private $id;
-    /** @ORM\Column(type="string") **/
     private $nom;
-    /** @ORM\Column(type="string") **/
+
+    /**
+     * @ORM\Column(type="string", name="prenom")
+     * **/
     private $prenom;
-    /** @ORM\Column(type="string") **/
-    private $passwrd;
-    /** @ORM\Column(type="integer") **/
-    private $pieceIdentite;
-    /** @ORM\Column(type="integer") **/
-    private $avatar;
+
+    /**
+     * @ORM\Column(type="string", name="password")
+     **/
+    private $password;
+
+    /**
+     * @ORM\Column(type="integer", name="idPieceIdentite")
+     * @ORM\OneToOne(targetEntity="Image")
+     * @ORM\JoinColumn(name="image", referencedColumnName="idImage")
+     **/
+    private $idPieceIdentite;
+
+    /**
+     * @ORM\Column(type="integer", name="idAvatar")
+     * @ORM\OneToOne(targetEntity="Image")
+     * @ORM\JoinColumn(name="image", referencedColumnName="idImage")
+     **/
+    private $idAvatar;
 
     public function __construct($nom, $prenom, $passwrd, $pieceIdentite, $avatar)
     {
@@ -44,17 +65,17 @@ class Utilisateur
     /**
      * @return mixed
      */
-    public function getId()
+    public function getIdUtilisateur()
     {
-        return $this->id;
+        return $this->idUtilisateur;
     }
 
     /**
-     * @param mixed $id
+     * @param mixed $idUtilisateur
      */
-    public function setId($id): void
+    public function setIdUtilisateur($idUtilisateur): void
     {
-        $this->id = $id;
+        $this->idUtilisateur = $idUtilisateur;
     }
 
     /**
@@ -92,51 +113,49 @@ class Utilisateur
     /**
      * @return mixed
      */
-    public function getPasswrd()
+    public function getPassword()
     {
-        return $this->passwrd;
+        return $this->password;
     }
 
     /**
-     * @param mixed $passwrd
+     * @param mixed $password
      */
-    public function setPasswrd($passwrd): void
+    public function setPassword($password): void
     {
-        $this->passwrd = $passwrd;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getPieceIdentite()
-    {
-        return $this->pieceIdentite;
-    }
-
-    /**
-     * @param mixed $pieceIdentite
-     */
-    public function setPieceIdentite($pieceIdentite): void
-    {
-        $this->pieceIdentite = $pieceIdentite;
+        $this->password = $password;
     }
 
     /**
      * @return mixed
      */
-    public function getAvatar()
+    public function getIdPieceIdentite()
     {
-        return $this->avatar;
+        return $this->idPieceIdentite;
     }
 
     /**
-     * @param mixed $avatar
+     * @param mixed $idPieceIdentite
      */
-    public function setAvatar($avatar): void
+    public function setIdPieceIdentite($idPieceIdentite): void
     {
-        $this->avatar = $avatar;
+        $this->idPieceIdentite = $idPieceIdentite;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getIdAvatar()
+    {
+        return $this->idAvatar;
+    }
 
+    /**
+     * @param mixed $idAvatar
+     */
+    public function setIdAvatar($idAvatar): void
+    {
+        $this->idAvatar = $idAvatar;
+    }
 
 }

@@ -12,13 +12,16 @@ $entitiesPath = [
 ];
 
 // Connexion à la base de données
+
 $dbParams = [
+    //'url' => 'mysql://root@127.0.0.1:3307/hi-op_bdd'
     'driver'   => 'pdo_mysql',
     'host'     => 'localhost',
     'charset'  => 'utf8',
     'user'     => 'root',
     'password' => '',
     'dbname'   => 'hi-op_bdd',
+    'port'     => 3307
 ];
 
 $isDevMode = true;
