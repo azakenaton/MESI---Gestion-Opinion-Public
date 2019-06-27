@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello RedactionController!{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-10 offset-1">
+                <form class="frame">
+                    <h2>Nouvel Op!</h2>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-2 col-xs-6">
+                                <label for="titleInput">Titre</label>
+                            </div>
+                            <div class="col-md-10 col-xs-6">
+                                <input type="text" class="form-control" id="titleInput" aria-describedby="titleHelp" placeholder="Saisir un titre">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-2 col-xs-6">
+                                <label for="contentInput">Contenu</label>
+                            </div>
+                            <div class="col-md-10 col-xs-6">
+                                <textarea class="form-control" id="contentInput" rows="5" cols="33" aria-describedby="contentHelp" placeholder="Rediger un contenu"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-2 col-xs-6">
+                                <label for="exampleInputPassword1">Tag</label>
+                            </div>
+                            <div class="col-md-10 col-xs-6">
+                                <input type="text" class="form-control" id="TagInput" placeholder="Ex : ecologie, politique">
+                                <small>Si vous voulez entrer plusieurs tag, séparez avec une virgule.</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-warning">Envoyer</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}
