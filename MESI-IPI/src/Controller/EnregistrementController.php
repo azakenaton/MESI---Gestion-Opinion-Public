@@ -49,7 +49,7 @@ class EnregistrementController extends AbstractController
 
     	$avatar = new Image(
     	    '',
-		    'avatar_' . $request->request->get('nom') . '_' .time()
+		    'avatar_' . $request->request->get('nom') . '_' .time() . '.' . $request->files->get('avatar')->guessExtension()
 	    );
 
     	try {
