@@ -16,4 +16,11 @@ class EnregistrementController extends AbstractController
             'controller_name' => 'EnregistrementController',
         ]);
     }
+
+    /**
+     * @Route("/enregistrement/utilisateur", name="enregistrement.utilisateur")
+     */
+    public function ajout_utilisateur(){
+
+    }
 }

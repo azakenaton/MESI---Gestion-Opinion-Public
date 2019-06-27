@@ -4,9 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-
-    "content-hash": "40954e4304cd2a4b781f6e38a7d4cbe2",
-
+    "content-hash": "6696235b9ec353f087b042888318ef1d",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -3148,16 +3146,16 @@
         },
         {
             "name": "symfony/flex",
-            "version": "v1.3.0",
+            "version": "v1.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/flex.git",
-                "reference": "cc58019d45fa39609a6def55d3ebd226aac3cb64"
+                "reference": "20951ca6a9d81e56cdf22263b61ae9abe08c94de"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/flex/zipball/cc58019d45fa39609a6def55d3ebd226aac3cb64",
-                "reference": "cc58019d45fa39609a6def55d3ebd226aac3cb64",
+                "url": "https://api.github.com/repos/symfony/flex/zipball/20951ca6a9d81e56cdf22263b61ae9abe08c94de",
+                "reference": "20951ca6a9d81e56cdf22263b61ae9abe08c94de",
                 "shasum": ""
             },
             "require": {
@@ -3193,7 +3191,7 @@
                 }
             ],
             "description": "Composer plugin for Symfony",
-            "time": "2019-06-22T07:50:43+00:00"
+            "time": "2019-06-27T08:08:27+00:00"
         },
         {
             "name": "symfony/form",
@@ -5885,7 +5883,6 @@
             "time": "2019-03-14T07:32:46+00:00"
         },
         {
-<<<<<<< HEAD
             "name": "symfony/web-profiler-bundle",
             "version": "v4.3.2",
             "source": {
@@ -5897,24 +5894,10 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/symfony/web-profiler-bundle/zipball/ca3a3c8558bc641df7c8c2c546381ccd78d0777a",
                 "reference": "ca3a3c8558bc641df7c8c2c546381ccd78d0777a",
-=======
-            "name": "symfony/webpack-encore-bundle",
-            "version": "v1.6.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/webpack-encore-bundle.git",
-                "reference": "f1ec2fea7fb6a7c7a444ac17e711fab3bbf5e015"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/symfony/webpack-encore-bundle/zipball/f1ec2fea7fb6a7c7a444ac17e711fab3bbf5e015",
-                "reference": "f1ec2fea7fb6a7c7a444ac17e711fab3bbf5e015",
->>>>>>> front-end
                 "shasum": ""
             },
             "require": {
                 "php": "^7.1.3",
-<<<<<<< HEAD
                 "symfony/config": "^4.2",
                 "symfony/http-kernel": "^4.3",
                 "symfony/routing": "~3.4|~4.0",
@@ -5937,7 +5920,50 @@
             "extra": {
                 "branch-alias": {
                     "dev-master": "4.3-dev"
-=======
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Bundle\\WebProfilerBundle\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony WebProfilerBundle",
+            "homepage": "https://symfony.com",
+            "time": "2019-05-30T16:10:05+00:00"
+        },
+        {
+            "name": "symfony/webpack-encore-bundle",
+            "version": "v1.6.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/webpack-encore-bundle.git",
+                "reference": "f1ec2fea7fb6a7c7a444ac17e711fab3bbf5e015"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/webpack-encore-bundle/zipball/f1ec2fea7fb6a7c7a444ac17e711fab3bbf5e015",
+                "reference": "f1ec2fea7fb6a7c7a444ac17e711fab3bbf5e015",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.1.3",
                 "symfony/asset": "^3.4 || ^4.0",
                 "symfony/config": "^3.4 || ^4.0",
                 "symfony/contracts": "^1.0",
@@ -5958,21 +5984,12 @@
                 "thanks": {
                     "name": "symfony/webpack-encore",
                     "url": "https://github.com/symfony/webpack-encore"
->>>>>>> front-end
                 }
             },
             "autoload": {
                 "psr-4": {
-<<<<<<< HEAD
-                    "Symfony\\Bundle\\WebProfilerBundle\\": ""
-                },
-                "exclude-from-classmap": [
-                    "/Tests/"
-                ]
-=======
                     "Symfony\\WebpackEncoreBundle\\": "src"
                 }
->>>>>>> front-end
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -5980,25 +5997,12 @@
             ],
             "authors": [
                 {
-<<<<<<< HEAD
-                    "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com"
-                },
-                {
-=======
->>>>>>> front-end
                     "name": "Symfony Community",
                     "homepage": "https://symfony.com/contributors"
                 }
             ],
-<<<<<<< HEAD
-            "description": "Symfony WebProfilerBundle",
-            "homepage": "https://symfony.com",
-            "time": "2019-05-30T16:10:05+00:00"
-=======
             "description": "Integration with your Symfony app & Webpack Encore!",
             "time": "2019-05-26T18:09:46+00:00"
->>>>>>> front-end
         },
         {
             "name": "symfony/yaml",
@@ -6441,7 +6445,6 @@
             "time": "2018-07-08T19:23:20+00:00"
         },
         {
-<<<<<<< HEAD
             "name": "phar-io/version",
             "version": "2.0.1",
             "source": {
@@ -7275,10 +7278,6 @@
         {
             "name": "sebastian/object-reflector",
             "version": "1.1.1",
-=======
-            "name": "symfony/css-selector",
-            "version": "v4.3.1",
->>>>>>> front-end
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/object-reflector.git",
