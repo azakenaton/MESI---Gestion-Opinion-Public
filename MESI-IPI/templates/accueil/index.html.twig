@@ -7,7 +7,8 @@
     <div class="container">
         <div class="row">
             <div class="col-10 offset-1">
-                <!--post liste-->
+                <!--for each post-->
+{#                {% for post in posts %}#}
                 <div class="accordion post" id="post01">
                     <div id="headingThree">
                         <div class="row flex-wrap-reverse">
@@ -19,22 +20,12 @@
                             </div>
                             <div class="col-md-10 col-xs-6 ">
                                 <div class="post-preview">
-                                    <h3>Deforestation en malasie</h3>
-                                    <p>Le Lorem Ipsum est simplement du faux texte employé dans la composition et la
-                                        mise en page avant impression. Le Lorem Ipsum est le faux texte standard de
-                                        l'imprimerie depuis les années 1500, quand un imprimeur anonyme assembla ensemble
-                                        des morceaux de texte pour réaliser un livre spécimen de polices de texte.
+                                    <h3>{{ op_title }}</h3>
+                                    <p>text primary
                                     </p>
                                 </div>
                                 <div id="collapse01" class="collapse" aria-labelledby="headingThree" data-parent="#post01">
-                                    <p>Le Lorem Ipsum est simplement du faux texte employé dans la composition et la
-                                        mise en page avant impression. Le Lorem Ipsum est le faux texte standard de
-                                        l'imprimerie depuis les années 1500, quand un imprimeur anonyme assembla ensemble
-                                        des morceaux de texte pour réaliser un livre spécimen de polices de texte.
-                                        Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise
-                                        en page avant impression. Le Lorem Ipsum est le faux texte standard de l'imprimerie
-                                        depuis les années 1500, quand un imprimeur anonyme assembla ensemble des morceaux de
-                                        texte pour réaliser un livre spécimen de polices de texte.
+                                    <p>text secondary
                                     </p>
 
                                     <div class="row">
@@ -47,78 +38,19 @@
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <button type="button" class="btn btn-outline-primary ml-1">Primary</button>
-                                        <button type="button" class="btn btn-outline-secondary ml-1">Secondary</button>
-                                        <button type="button" class="btn btn-outline-success ml-1">Success</button>
-                                        <button type="button" class="btn btn-outline-danger ml-1">Danger</button>
-                                        <button type="button" class="btn btn-outline-warning ml-1">Warning</button>
-                                        <button type="button" class="btn btn-outline-info ml-1">Info</button>
-                                        <button type="button" class="btn btn-outline-dark ml-1">Dark</button>
-                                    </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-
-
-            </div>
-
-                <div class="accordion post" id="post02">
-                    <div id="headingThree">
-                        <div class="row flex-wrap-reverse">
-                            <div class="col-md-2 col-xs-6 center-flex">
-                                <button class="btn btn-link collapsed big-btn" type="button" data-toggle="collapse" data-target="#collapse02" aria-expanded="false" aria-controls="collapseThree">
-                                    <i class="fas fa-plus-circle"></i>
-                                </button>
-                            </div>
-                            <div class="col-md-10 col-xs-6">
-                                <div class="post-preview">
-                                    <h3>Deforestation en malasie</h3>
-                                    <p>Le Lorem Ipsum est simplement du faux texte employé dans la composition et la
-                                        mise en page avant impression. Le Lorem Ipsum est le faux texte standard de
-                                        l'imprimerie depuis les années 1500, quand un imprimeur anonyme assembla ensemble
-                                        des morceaux de texte pour réaliser un livre spécimen de polices de texte.
-                                    </p>
-                                </div>
-                                <div id="collapse02" class="collapse" aria-labelledby="headingThree" data-parent="#post02">
-                                    <p>Le Lorem Ipsum est simplement du faux texte employé dans la composition et la
-                                        mise en page avant impression. Le Lorem Ipsum est le faux texte standard de
-                                        l'imprimerie depuis les années 1500, quand un imprimeur anonyme assembla ensemble
-                                        des morceaux de texte pour réaliser un livre spécimen de polices de texte.
-                                        Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise
-                                        en page avant impression. Le Lorem Ipsum est le faux texte standard de l'imprimerie
-                                        depuis les années 1500, quand un imprimeur anonyme assembla ensemble des morceaux de
-                                        texte pour réaliser un livre spécimen de polices de texte.
-                                    </p>
-
-                                    <div class="row">
-                                        <div class="col-2">
-                                            <i class="fas fa-user float-left mr-3 writer-icon"></i>
-                                        </div>
-                                        <div class="col-10">
-                                            <p>Ecrit le 10 août 2019 par <b>Jean-Claude Vancake</b></p>
-                                            <p>En réaction à : <a href="google.fr">google.fr</a></p>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <button type="button" class="btn btn-outline-primary ml-1">Primary</button>
-                                        <button type="button" class="btn btn-outline-secondary ml-1">Secondary</button>
-                                        <button type="button" class="btn btn-outline-success ml-1">Success</button>
-                                        <button type="button" class="btn btn-outline-danger ml-1">Danger</button>
-                                        <button type="button" class="btn btn-outline-warning ml-1">Warning</button>
-                                        <button type="button" class="btn btn-outline-info ml-1">Info</button>
-                                        <button type="button" class="btn btn-outline-dark ml-1">Dark</button>
+                                        <!--for each tag-->
+                                        <button type="button" class="btn btn-outline-warning ml-1">TagA</button>
+                                        <button type="button" class="btn btn-outline-warning ml-1">TagB</button>
+                                        <button type="button" class="btn btn-outline-warning ml-1">TagC</button>
+                                        <!--end for each tag-->
                                     </div>
                                 </div>
                             </div>
                         </div>
-
                     </div>
-
-
                 </div>
-                <!--end post liste-->
+{#                {% endfor %}#}
+                <!--end for each post-->
             </div>
         </div>
     </div>
