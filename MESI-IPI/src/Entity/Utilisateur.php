@@ -13,7 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="utilisateur")
+ * @ORM\Table(name="Utilisateur")
  */
 class Utilisateur
 {
@@ -49,7 +49,7 @@ class Utilisateur
     /**
      * @ORM\Column(type="integer", name="idAvatar")
      * @ORM\OneToOne(targetEntity="Image::class")
-     * @ORM\JoinColumn(name="image", referencedColumnName="idImage")
+     * @ORM\JoinColumn(name="Image", referencedColumnName="idImage")
      **/
     private $idAvatar;
 

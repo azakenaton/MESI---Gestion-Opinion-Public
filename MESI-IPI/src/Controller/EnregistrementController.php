@@ -2,7 +2,13 @@
 
 namespace App\Controller;
 
+use App\Entity\EntityManager;
+use App\Entity\Image;
+use App\Entity\Utilisateur;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\Routing\Annotation\Route;
 
 class EnregistrementController extends AbstractController
@@ -20,7 +26,57 @@ class EnregistrementController extends AbstractController
     /**
      * @Route("/enregistrement/utilisateur", name="enregistrement.utilisateur")
      */
-    public function ajout_utilisateur(){
+    public function ajout_utilisateur(Request $request){
+    	$entityManager = EntityManager::getInstance();
+    	$errors = [];
 
+    	$pieceIdentite = new Image(
+    		'',
+		    'identite_' . $request->request->get('nom') . '_' . time()
+	    );
+
+    	try {
+    		$entityManager->persist($pieceIdentite);
+    		$entityManager->flush();
+	    } catch(Exception $exception) {
+    		$errors[] = $exception;
+	    }
+
+    	$avatar = new Image(
+    	    '',
+		    'avatar_' . $request->request->get('nom') . '_' .time()
+	    );
+
+    	try {
+    		$entityManager->persist($avatar);
+    		$entityManager->flush();
+	    } catch(Exception $exception) {
+    		$errors[] = $exception;
+	    }
+
+    	$utilisateur = new Utilisateur(
+    		$request->request->get('nom'),
+		    $request->request->get('prenom'),
+		    $request->request->get('password'),
+		    $pieceIdentite->getIdImage(),
+		    $avatar->getIdImage()
+	    );
+
+	    if (!$request->request->get('conditionGeneraleCheck') || !$request->request->get('veraciteInformationCheck')) {
+		    $errors[] = new BadRequestHttpException();
+	    }
+
+	    if (count($errors) === 0) {
+		    $response = $this->redirectToRoute('accueil');
+		    $entityManager->persist($utilisateur);
+		    $entityManager->flush();
+	    } else {
+		    $response = $this->redirectToRoute(
+			    'enregistrement',
+			    $request->request->all()
+		    );
+	    }
+
+    	return $response;
     }
 }
