@@ -1,0 +1,51 @@
+h1 {
+    font-family: 'Luckiest Guy', cursive;
+    padding-bottom: 2%;
+}
+
+h2 {
+    text-align: center;
+    padding-bottom: 2%;
+}
+
+footer {
+    text-align: center;
+}
+
+small {
+    color: #CCCCCC;
+}
+
+.frame {
+margin-top: 15px;
+padding: 4% 10%;
+border: 10px solid #ffc107 !important;
+border-radius: 50px;
+}
+
+.post {
+margin-top: 15px;
+padding: 2% 4%;
+border: 10px solid #ffc107 !important;
+border-radius: 50px;
+}
+
+.center-flex {
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+.big-btn {
+font-size: 6em;
+color: #ffc107;
+}
+
+.writer-icon {
+font-size: 4em !important;
+}
+
+.nav-icon {
+font-size: 3em !important;
+}
+

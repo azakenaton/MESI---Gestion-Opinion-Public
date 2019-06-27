@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ConnexionController!{% endblock %}
+
+{% block body %}
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-10 offset-1">
+                <form class="frame">
+                    <h2>Connexion utilisateur</h2>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-2 col-xs-6">
+                                <label for="lastnameInput">Nom</label>
+                            </div>
+                            <div class="col-md-10 col-xs-6">
+                                <input type="text" class="form-control" id="lastnameInput" aria-describedby="lastnameHelp" placeholder="Entrez votre nom">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-2 col-xs-6">
+                                <label for="firstnameInput">Prénom</label>
+                            </div>
+                            <div class="col-md-10 col-xs-6">
+                                <input type="text" class="form-control" id="firstnameInput" aria-describedby="firstnameHelp" placeholder="Entrez votre nom">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-2 col-xs-6">
+                                <label for="exampleInputPassword1">Password</label>
+                            </div>
+                            <div class="col-md-10 col-xs-6">
+                                <input type="password" class="form-control" id="passwordInput" placeholder="Mot de passe">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-warning">Se connecter</button>
+                        <a href="/enregistrement">
+                            <button type="button" class="btn btn-outline-warning ml-1">
+                                S'enregistrer
+                            </button>
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}
