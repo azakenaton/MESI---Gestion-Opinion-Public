@@ -40,7 +40,7 @@ class Post
     private $lienExterne;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="string")
      **/
     private $dateCreation;
 

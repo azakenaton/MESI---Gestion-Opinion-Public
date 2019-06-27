@@ -10,6 +10,7 @@ namespace App\Repository;
 
 
 use App\Entity\Post;
+use App\Entity\Tag;
 use Doctrine\ORM\EntityRepository;
 use App\Entity\EntityManager;
 use App\Entity\Utilisateur;
@@ -44,6 +45,21 @@ class PostRepository extends EntityRepository
     public function getAllPost(){
         $allPost = $this->userRepo->findAll();
         return $allPost;
+    }
+
+    public function insertTagPost($idTag,$idPost,$idUtilisateur){
+        $queryBuilder = $this->entityManager->createQueryBuilder();
+        $queryBuilder->insert('tagpost')
+            ->setValue('idTag','?')
+            ->setValue('idPost','?')
+            ->setValue('idUtilisateur','?')
+            ->setParameter(0, $idTag)
+            ->setParameter(1, $idPost)
+            ->setParameter(2, $idUtilisateur);
+
+
+        $queryBuilder->getQuery();
+
     }
 
 

@@ -49,8 +49,19 @@ class UtilisateurRepository extends EntityRepository
         return $allUser;
     }
 
-    public function getUserByName($nom){
-        $userByName = $this->userRepo->findOneBy(["nom" => $nom]);
+    public function getUserForConnection($nom,$prenom,$password){
+        $queryBuilder = $this->entityManager->createQueryBuilder();
+        $queryBuilder->select('u')
+            ->from(Utilisateur::class, 'u')
+            ->where('u.nom = :nom')
+            ->andWhere('u.prenom = :prenom')
+            ->andWhere('u.password = :password')
+            ->setParameter('nom', $nom)
+            ->setParameter('prenom', $prenom)
+            ->setParameter('password', $password);
+
+        $userByName =$queryBuilder->getQuery();
+
         return $userByName;
     }
 

@@ -3,6 +3,8 @@
 namespace App\Controller;
 
 use App\Repository\PostRepository;
+use App\Repository\TagPostRepository;
+use App\Repository\TagRepository;
 use App\Repository\UtilisateurRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
@@ -16,21 +18,34 @@ class AccueilController extends AbstractController
     {
         $postRepo = new PostRepository();
         $utilRepo = new UtilisateurRepository();
+        $tagPostRepo = new TagPostRepository();
+        $tagRepo = new TagRepository();
         $allPost = $postRepo->getAllPost();
 
         $tab = array();
         foreach ($allPost as $post){
+            //construction du tableau avec les entités Post et Tag correspondant
+
+            //Les tags en fonction du idPost
+            $tag_list = array();
+            $idPost = $post->getIdPost();
+            $allTagPost = $tagPostRepo->getTagPostByIdpost($idPost);
+            foreach ($allTagPost as $tagPost){
+                $tag = $tagRepo->getTagById($tagPost->getIdTag());
+                array_push($tag_list,$tag->getNomTag());
+            }
+
             $idUtil = $post->getIdUtilisateur();
             $util =  $utilRepo->getUtilisateurWithId($idUtil);
             $newPost = [
-                'id' => $post->getIdPost(),
+                'id' => $idPost,
                 'text_primary' => substr($post->getContenu(),0,50),
-                'op_title' => "montitre",
+                'op_title' => $post->getLienExterne(),
                 'text_secondary' => $post->getContenu(),
-                'post_date' => $post->getDateCreation()->format('Y-m-d-H-i-s'),
+                'post_date' => $post->getDateCreation()/*->format('Y-m-d-H-i-s')*/,
                 'post_author' => $util->getNom().' '.$util->getPrenom(),
-                'source_url' => $post->getLienExterne(),
-                'tag_list' => ['tag1','tag2','tag3']
+                'source_url' => 'Ultérieurement',
+                'tag_list' => $tag_list
             ];
             array_push($tab,$newPost);
         }

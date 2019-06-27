@@ -6,7 +6,7 @@
     <div class="container">
         <div class="row">
             <div class="col-10 offset-1">
-                <form class="frame">
+                <form class="frame" action="{{ path('user.connection') }}" method="post" enctype="multipart/form-data">
                     <h2>Connexion utilisateur</h2>
                     <div class="form-group">
                         <div class="row">
@@ -14,7 +14,7 @@
                                 <label for="lastnameInput">Nom</label>
                             </div>
                             <div class="col-md-10 col-xs-6">
-                                <input type="text" class="form-control" id="lastnameInput" aria-describedby="lastnameHelp" placeholder="Entrez votre nom">
+                                <input name="nom" type="text" class="form-control" id="lastnameInput" aria-describedby="lastnameHelp" placeholder="Entrez votre nom">
                             </div>
                         </div>
                     </div>
@@ -25,7 +25,7 @@
                                 <label for="firstnameInput">Prénom</label>
                             </div>
                             <div class="col-md-10 col-xs-6">
-                                <input type="text" class="form-control" id="firstnameInput" aria-describedby="firstnameHelp" placeholder="Entrez votre nom">
+                                <input name="prenom" type="text" class="form-control" id="firstnameInput" aria-describedby="firstnameHelp" placeholder="Entrez votre nom">
                             </div>
                         </div>
                     </div>
@@ -35,7 +35,7 @@
                                 <label for="exampleInputPassword1">Password</label>
                             </div>
                             <div class="col-md-10 col-xs-6">
-                                <input type="password" class="form-control" id="passwordInput" placeholder="Mot de passe">
+                                <input name="password" type="password" class="form-control" id="passwordInput" placeholder="Mot de passe">
                             </div>
                         </div>
                     </div>

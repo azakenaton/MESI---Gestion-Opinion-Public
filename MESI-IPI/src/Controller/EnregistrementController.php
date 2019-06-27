@@ -5,6 +5,8 @@ namespace App\Controller;
 use App\Entity\EntityManager;
 use App\Entity\Image;
 use App\Entity\Utilisateur;
+use App\Repository\ImageRepository;
+use App\Repository\UtilisateurRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -27,7 +29,7 @@ class EnregistrementController extends AbstractController
      * @Route("/enregistrement/utilisateur", name="enregistrement.utilisateur")
      */
     public function ajout_utilisateur(Request $request){
-    	$entityManager = EntityManager::getInstance();
+    	/*$entityManager = EntityManager::getInstance();
     	$errors = [];
 
     	$pieceIdentite = new Image(
@@ -75,8 +77,50 @@ class EnregistrementController extends AbstractController
 			    'enregistrement',
 			    $request->request->all()
 		    );
-	    }
+	    }*/
 
-    	return $response;
+    	//return $response;
+
+        $errors = [];
+        $imageRepo = new ImageRepository();
+        $userRepo = new UtilisateurRepository();
+
+        $pieceIdentite = new Image(
+            '',
+            'identite_' . $request->request->get('nom') . '_' . time()
+        );
+
+        $avatar = new Image(
+            '',
+            'avatar_' . $request->request->get('nom') . '_' .time()
+        );
+
+        $imageRepo->addImage($pieceIdentite);
+        $imageRepo->addImage($avatar);
+
+        $utilisateur = new Utilisateur(
+            $request->request->get('nom'),
+            $request->request->get('prenom'),
+            $request->request->get('password'),
+            $pieceIdentite->getIdImage(),
+            $avatar->getIdImage()
+        );
+
+        $userRepo->addUtilisateur($utilisateur);
+
+        if (!$request->request->get('conditionGeneraleCheck') || !$request->request->get('veraciteInformationCheck')) {
+            $errors[] = new BadRequestHttpException();
+        }
+
+        if (count($errors) != 0) {
+            $response = $this->redirectToRoute(
+                'enregistrement',
+                $request->request->all()
+            );
+        }else{
+            $response = $this->redirectToRoute('accueil');
+        }
+
+        return $response;
     }
 }
