@@ -20,7 +20,6 @@ class Image
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
-     * @ORM\OneToOne(targetEntity="Image::class")
      * @ORM\Column(type="integer", name="idImage")
      **/
     private $idImage;
@@ -37,7 +36,6 @@ class Image
 
     /**
      * Image constructor.
-     * @param $idImage
      * @param $refImg
      * @param $nomImg
      */

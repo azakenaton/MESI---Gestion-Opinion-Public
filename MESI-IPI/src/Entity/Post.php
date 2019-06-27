@@ -7,7 +7,7 @@
  */
 
 namespace App\Entity;
-
+use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity
  * @ORM\Table(name="post")
@@ -25,7 +25,7 @@ class Post
     /**
      * @ORM\Column(type="integer")
      * @ORM\ManyToOne(targetEntity="Utilisateur::class")
-     * @ORM\JoinColumns(name="utilisateur", referencedColumnName="idUtilisateur")
+     * @ORM\JoinColumn(name="utilisateur", referencedColumnName="idUtilisateur")
      **/
     private $idUtilisateur;
 
