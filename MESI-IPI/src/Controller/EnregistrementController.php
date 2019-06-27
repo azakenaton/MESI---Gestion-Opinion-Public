@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
+use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\Routing\Annotation\Route;
 
 class EnregistrementController extends AbstractController
@@ -32,10 +33,14 @@ class EnregistrementController extends AbstractController
 
     	$pieceIdentite = new Image(
     		'',
-		    'identite_' . $request->request->get('nom') . '_' . time()
+		    'identite_' . $request->request->get('nom') . '_' . time() . '.' . $request->files->get('pieceIdentite')->guessExtension()
 	    );
 
     	try {
+    		$request->files->get('pieceIdentite')->move(
+				$this->getParameter('identites_directory'),
+			    $pieceIdentite->getNomImg()
+		    );
     		$entityManager->persist($pieceIdentite);
     		$entityManager->flush();
 	    } catch(Exception $exception) {
@@ -48,6 +53,10 @@ class EnregistrementController extends AbstractController
 	    );
 
     	try {
+    		$request->files->get('avatar')->move(
+    			$this->getParameter('avatars_directory'),
+			    $pieceIdentite->getNomImg()
+		    );
     		$entityManager->persist($avatar);
     		$entityManager->flush();
 	    } catch(Exception $exception) {
