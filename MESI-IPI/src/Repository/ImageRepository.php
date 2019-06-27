@@ -15,7 +15,6 @@ use App\Entity\EntityManager;
 
 class ImageRepository extends EntityRepository
 {
-    Private $connection;
     Private $entityManager;
     Private $userRepo;
 
@@ -23,9 +22,8 @@ class ImageRepository extends EntityRepository
      * ImageRepository constructor.
      * @param $connection
      */
-    public function __construct(Connection $connection)
+    public function __construct()
     {
-        $this->connection = $connection;
         $this->entityManager = EntityManager::getInstance();
         $this->userRepo = $this->entityManager->getRepository(Image::class);
     }

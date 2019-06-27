@@ -161,8 +161,8 @@ class Utilisateur
     public function __toString()
     {
         // TODO: Implement __toString() method.
-        $format = "User (id: %s, firstname: %s, lastname: %s, role: %s)\n";
-        return sprintf($format, $this->id, $this->firstname, $this->lastname, $this->role);
+        $format = "User (id: %s, firstname: %s, lastname: %s, password: %s)\n";
+        return sprintf($format, $this->idUtilisateur, $this->nom, $this->prenom, $this->password);
     }
 
 

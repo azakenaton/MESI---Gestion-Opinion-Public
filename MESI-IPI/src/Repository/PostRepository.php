@@ -18,14 +18,12 @@ use Doctrine\DBAL\Connection;
 
 class PostRepository extends EntityRepository
 {
-    Private $connection;
     Private $entityManager;
     Private $userRepo;
 
 
-    public function __construct(Connection $connection)
+    public function __construct()
     {
-        $this->connection = $connection;
         $this->entityManager = EntityManager::getInstance();
         $this->userRepo = $this->entityManager->getRepository(Post::class);
     }

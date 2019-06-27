@@ -19,16 +19,14 @@ use Doctrine\ORM\EntityRepository;
 
 class UtilisateurRepository extends EntityRepository
 {
-    Private $connection;
     Private $entityManager;
     Private $userRepo;
 
     /**
      * UtilisateurRepository constructor.
      */
-    public function __construct(Connection $connection)
+    public function __construct()
     {
-        $this->connection = $connection;
         $this->entityManager = EntityManager::getInstance();
         $this->userRepo = $this->entityManager->getRepository(Utilisateur::class);
     }

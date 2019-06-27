@@ -29,13 +29,13 @@ class testController extends AbstractController
     /**
      * @Route("/test")
      */
-    public function index(Connection $connection){
+    public function index(){
 
         $image= new Image('LUC','luccho');
-        $req = new ImageRepository($connection);
-        $res = $req->getImageWithId(1);
+        $req = new UtilisateurRepository();
+        $res = $req->getUtilisateurWithId(2);
 
-        var_dump($res->getRefImg());
+        var_dump($res->__toString());
 
         return $this->render('base.html.twig');
     }
