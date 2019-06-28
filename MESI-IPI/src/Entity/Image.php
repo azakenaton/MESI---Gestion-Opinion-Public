@@ -9,6 +9,8 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\Validator\Constraints as Assert;
 
 
 /**
@@ -34,15 +36,21 @@ class Image
      **/
     private $nomImg;
 
+	/**
+	 * @Assert\Image
+	 */
+	private $imageFile;
+
     /**
      * Image constructor.
-     * @param $refImg
-     * @param $nomImg
+     * @param $image UploadedFile
+     * @param $repertory string
      */
-    public function __construct($refImg, $nomImg)
+    public function __construct(UploadedFile $image, string $repertory)
     {
-        $this->refImg = $refImg;
-        $this->nomImg = $nomImg;
+        $this->refImg    = '';
+        $this->imageFile = $image;
+        $this->nomImg    = $repertory . '_' . substr($image->getFilename(), max(strlen($image->getFilename()), 12)) . '_' . time() . '.' . $image->guessExtension();
     }
 
     /**
@@ -93,7 +101,11 @@ class Image
         $this->nomImg = $nomImg;
     }
 
-
-
+	/**
+	 * @return mixed
+	 */
+	public function getFile() {
+		return $this->imageFile;
+	}
 
 }
