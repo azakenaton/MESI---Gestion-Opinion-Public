@@ -117,6 +117,7 @@ class EnregistrementController extends AbstractController
                 'enregistrement',
                 $request->request->all()
             );
+            session_destroy();
         }else{
             $response = $this->redirectToRoute('accueil');
             $_SESSION['idUtilisateur'] = $utilisateur->getIdUtilisateur();
