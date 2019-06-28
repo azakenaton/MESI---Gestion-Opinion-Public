@@ -73,7 +73,6 @@ class EnregistrementController extends AbstractController
 		    $violations = $validator->validate($avatar);
 		    if (count($violations) === 0) {
 			    try {
-				    $validator->validate($avatar);
 				    $avatar->getFile()->move(
 					    $this->getParameter('avatars_directory'),
 					    $avatar->getNomImg()
