@@ -18,7 +18,6 @@ class ConnexionController extends AbstractController
      */
     public function index()
     {
-        session_destroy();
         return $this->render('connexion/index.html.twig', [
             'controller_name' => 'ConnexionController',
         ]);
