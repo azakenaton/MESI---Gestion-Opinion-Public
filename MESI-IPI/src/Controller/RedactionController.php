@@ -38,7 +38,7 @@ class RedactionController extends AbstractController
         $tagPostRepo = new TagPostRepository();
 
         $post = new Post(
-            1,
+            2,
             $request->request->get('contenu'),
             $request->request->get('titre'),
             date("d.m.y")
@@ -58,7 +58,7 @@ class RedactionController extends AbstractController
             }else{
                 $tag = $myTag[0];
             }
-            $tagPost = new TagPost($tag->getIdTag(),$post->getIdPost(),1);
+            $tagPost = new TagPost($tag->getIdTag(),$post->getIdPost(),2);
             $tagPostRepo->addTagPost($tagPost);
         }
 
