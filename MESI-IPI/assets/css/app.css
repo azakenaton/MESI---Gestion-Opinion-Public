@@ -1,12 +1,17 @@
 h1 {
     font-family: 'Luckiest Guy', cursive;
-    padding-bottom: 2%;
 }
 
 h2 {
+    font-family: 'Luckiest Guy', cursive;
     text-align: center;
     padding-bottom: 2%;
 }
+
+h3 {
+    font-family: 'Raleway', cursive;
+}
+
 
 footer {
     text-align: center;
@@ -16,18 +21,19 @@ small {
     color: #CCCCCC;
 }
 
-.frame {
-margin-top: 15px;
-padding: 4% 10%;
-border: 10px solid #ffc107 !important;
+
+.frame, .post {
+margin-top: 10px;
+border: 5px solid #ffc107 !important;
 border-radius: 50px;
 }
 
+.frame {
+padding: 4% 10%;
+}
+
 .post {
-margin-top: 15px;
 padding: 2% 4%;
-border: 10px solid #ffc107 !important;
-border-radius: 50px;
 }
 
 .center-flex {
@@ -46,6 +52,10 @@ font-size: 4em !important;
 }
 
 .nav-icon {
-font-size: 3em !important;
+font-size: 2em !important;
+}
+
+.nav-elements {
+    padding-top: 1em;
 }
 
