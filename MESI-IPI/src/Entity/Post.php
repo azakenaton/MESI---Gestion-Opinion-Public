@@ -7,10 +7,13 @@
  */
 
 namespace App\Entity;
+
 use Doctrine\ORM\Mapping as ORM;
+
+
 /**
  * @ORM\Entity
- * @ORM\Table(name="post")
+ * @ORM\Table(name="Post")
  */
 class Post
 {
@@ -18,7 +21,7 @@ class Post
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
+     * @ORM\Column(name="idPost", type="integer")
      **/
     private $idPost;
 

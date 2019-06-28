@@ -8,10 +8,16 @@ use App\Entity\Utilisateur;
 use App\Repository\ImageRepository;
 use App\Repository\UtilisateurRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Config\Definition\Exception\Exception;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
+use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Validator\ConstraintViolationList;
+use Symfony\Component\Validator\Validation;
+use Symfony\Component\Validator\ValidatorBuilder;
 
 class EnregistrementController extends AbstractController
 {
@@ -29,100 +35,101 @@ class EnregistrementController extends AbstractController
      * @Route("/enregistrement/utilisateur", name="enregistrement.utilisateur")
      */
     public function ajout_utilisateur(Request $request){
-    	/*$entityManager = EntityManager::getInstance();
-    	$errors = [];
 
-    	$pieceIdentite = new Image(
-    		'',
-		    'identite_' . $request->request->get('nom') . '_' . time()
-	    );
 
-    	try {
-    		$entityManager->persist($pieceIdentite);
-    		$entityManager->flush();
-	    } catch(Exception $exception) {
-    		$errors[] = $exception;
-	    }
-
-    	$avatar = new Image(
-    	    '',
-		    'avatar_' . $request->request->get('nom') . '_' .time()
-	    );
-
-    	try {
-    		$entityManager->persist($avatar);
-    		$entityManager->flush();
-	    } catch(Exception $exception) {
-    		$errors[] = $exception;
-	    }
-
-    	$utilisateur = new Utilisateur(
-    		$request->request->get('nom'),
-		    $request->request->get('prenom'),
-		    $request->request->get('password'),
-		    $pieceIdentite->getIdImage(),
-		    $avatar->getIdImage()
-	    );
-
-	    if (!$request->request->get('conditionGeneraleCheck') || !$request->request->get('veraciteInformationCheck')) {
-		    $errors[] = new BadRequestHttpException();
-	    }
-
-	    if (count($errors) === 0) {
-		    $response = $this->redirectToRoute('accueil');
-		    $entityManager->persist($utilisateur);
-		    $entityManager->flush();
-	    } else {
-		    $response = $this->redirectToRoute(
-			    'enregistrement',
-			    $request->request->all()
-		    );
-	    }*/
-
-    	//return $response;
-
-        $errors = [];
+    	$validator = Validation::createValidator();
         $imageRepo = new ImageRepository();
         $userRepo = new UtilisateurRepository();
 
-        $pieceIdentite = new Image(
-            '',
-            'identite_' . $request->request->get('nom') . '_' . time()
-        );
+    	$errors = [];
 
-        $avatar = new Image(
-            '',
-            'avatar_' . $request->request->get('nom') . '_' .time()
-        );
+    	$pieceIdentiteFile = $request->files->get('pieceIdentite');
+    	if ($pieceIdentiteFile instanceof UploadedFile) {
+		    $pieceIdentite = new Image(
+			    $pieceIdentiteFile,
+			    'identite'
+		    );
+		    $violations = $validator->validate($pieceIdentite);
+		    if (count($violations) === 0) {
+			    try {
+				    $pieceIdentite->getFile()->move(
+					    $this->getParameter('identites_directory'),
+					    $pieceIdentite->getNomImg()
+				    );
+                    $imageRepo->addImage($pieceIdentite);
+			    } catch(Exception $exception) {
+				    $errors[] = $exception->getMessage();
+			    }
+		    } else {
+			    foreach ($violations as $violation) {
+				    $errors[] = $violation->getMessage();
+			    }
+		    }
+	    } else {
+    		$errors[] = 'Vous devez fournir une pièce d\'identité.';
+	    }
 
-        $imageRepo->addImage($pieceIdentite);
-        $imageRepo->addImage($avatar);
+		$avatarFile = $request->files->get('avatar');
+    	if ($avatarFile instanceof UploadedFile) {
+		    $avatar = new Image(
+			    $avatarFile,
+			    'avatar'
+		    );
+		    $violations = $validator->validate($avatar);
+		    if (count($violations) === 0) {
+			    try {
+				    $avatar->getFile()->move(
+					    $this->getParameter('avatars_directory'),
+					    $avatar->getNomImg()
+				    );
+                    $imageRepo->addImage($avatar);
+			    } catch(Exception $exception) {
+				    $errors[] = $exception->getMessage();
+			    }
+		    } else {
+			    foreach ($violations as $violation) {
+				    $errors[] = $violation->getMessage();
+			    }
+		    }
+	    } else {
+    		$errors[] = 'Vous devez enregistrer un avatar.';
+	    }
 
-        $utilisateur = new Utilisateur(
-            $request->request->get('nom'),
-            $request->request->get('prenom'),
-            $request->request->get('password'),
-            $pieceIdentite->getIdImage(),
-            $avatar->getIdImage()
-        );
+	    if (!$request->request->get('conditionGeneraleCheck')) {
+		    $errors[] = 'Vous devez accepter les Conditions Generales d\'Utilisation.';
+	    }
 
-        $userRepo->addUtilisateur($utilisateur);
+	    if (!$request->request->get('veraciteInformationCheck')) {
+		    $errors[] = 'Vous devez attester sur l\'honneur de la validité des informations fournies.';
+	    }
 
-        if (!$request->request->get('conditionGeneraleCheck') || !$request->request->get('veraciteInformationCheck')) {
-            $errors[] = new BadRequestHttpException();
-        }
+    	if (count($errors) === 0) {
+		    $utilisateur = new Utilisateur(
+			    $request->request->get('nom'),
+			    $request->request->get('prenom'),
+			    $request->request->get('password'),
+			    $request->request->get('email'),
+			    $pieceIdentite->getIdImage(),
+			    $avatar->getIdImage()
+		    );
+		    $violations = $validator->validate($utilisateur);
+		    if (count($violations) > 0) {
+			    foreach ($violations as $violation) {
+				    $errors[] = $violation->getMessage();
+			    }
+		    }
+	    }
 
-        if (count($errors) != 0) {
-            $response = $this->redirectToRoute(
-                'enregistrement',
-                $request->request->all()
-            );
-            session_destroy();
-        }else{
-            $response = $this->redirectToRoute('accueil');
-            $_SESSION['idUtilisateur'] = $utilisateur->getIdUtilisateur();
-        }
+	    if (count($errors) === 0) {
+	    	$response = $this->redirectToRoute('accueil');
+            $userRepo->addUtilisateur($utilisateur);
+	    } else {
+		    $response = $this->redirectToRoute(
+			    'enregistrement',
+			    $errors
+		    );
+	    }
 
-        return $response;
+    	return $response;
     }
 }
