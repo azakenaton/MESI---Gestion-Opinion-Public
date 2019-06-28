@@ -13,7 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="Image")
+ * @ORM\Table(name="image")
  */
 class Image
 {
