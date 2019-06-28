@@ -62,7 +62,7 @@ class UtilisateurRepository extends EntityRepository
 
         $userByName =$queryBuilder->getQuery();
 
-        return $userByName;
+        return $userByName->getResult();
     }
 
     public function delUser($id){

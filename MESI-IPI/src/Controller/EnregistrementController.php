@@ -119,6 +119,7 @@ class EnregistrementController extends AbstractController
             );
         }else{
             $response = $this->redirectToRoute('accueil');
+            $_SESSION['idUtilisateur'] = $utilisateur->getIdUtilisateur();
         }
 
         return $response;

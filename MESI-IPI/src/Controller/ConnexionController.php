@@ -10,13 +10,16 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\Routing\Annotation\Route;
 
+session_start();
+
 class ConnexionController extends AbstractController
 {
     /**
-     * @Route("", name="connexion")
+     * @Route("/connexion", name="connexion")
      */
     public function index()
     {
+        session_destroy();
         return $this->render('connexion/index.html.twig', [
             'controller_name' => 'ConnexionController',
         ]);
@@ -27,7 +30,6 @@ class ConnexionController extends AbstractController
      */
     public function userConnection(Request $request){
 
-
         $errors = [];
         $userRepo = new UtilisateurRepository();
 
@@ -37,10 +39,13 @@ class ConnexionController extends AbstractController
 
         if($res != null) {
             $response = $response = $this->redirectToRoute('accueil');
+            $_SESSION['idUtilisateur'] = $res[0]->getIdUtilisateur();
         }else{
             $response = $response = $this->redirectToRoute('enregistrement');
+            session_destroy();
         }
 
         return $response;
     }
+
 }
