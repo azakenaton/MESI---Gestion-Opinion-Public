@@ -8,9 +8,11 @@
 
 namespace App\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+
 /**
  * @ORM\Entity
- * @ORM\Table(name="post")
+ * @ORM\Table(name="Post")
  */
 class Post
 {
@@ -18,14 +20,14 @@ class Post
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
+     * @ORM\Column(name="idPost", type="integer")
      **/
     private $idPost;
 
     /**
      * @ORM\Column(type="integer")
-     * @ORM\ManyToOne(targetEntity="Utilisateur::class")
-     * @ORM\JoinColumns(name="utilisateur", referencedColumnName="idUtilisateur")
+     * @ORM\ManyToOne(targetEntity="Utilisateur")
+     * @ORM\JoinColumn(name="idUtilisateur", referencedColumnName="idUtilisateur")
      **/
     private $idUtilisateur;
 
